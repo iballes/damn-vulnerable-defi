@@ -40,6 +40,10 @@ describe('[Challenge] Unstoppable', function () {
 
     it('Exploit', async function () {
         /** CODE YOUR EXPLOIT HERE */
+        // Dentro de unstopabble lender hay un assert que comprueba que la cantidad de tokens de IRC20 del contrato sean iguales que
+        // un int que solo actualiza cuando llaman a la funcion deposit. Si se le envian tokens al contrato sin usar la funcion
+        // deposit el assert se deja de cumplir.
+        await this.token.connect(attacker).transfer(this.pool.address, 100);
     });
 
     after(async function () {
