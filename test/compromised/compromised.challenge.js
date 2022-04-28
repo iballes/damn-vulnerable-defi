@@ -61,6 +61,16 @@ describe('Compromised challenge', function () {
 
     it('Exploit', async function () {        
         /** CODE YOUR EXPLOIT HERE */
+        // hex1: MHhjNjc4ZWYxYWE0NTZkYTY1YzZmYzU4NjFkNDQ4OTJjZGZhYzBjNmM4YzI1NjBiZjBjOWZiY2RhZTJmNDczNWE5
+        // base64: 0xc678ef1aa456da65c6fc5861d44892cdfac0c6c8c2560bf0c9fbcdae2f4735a9
+
+        // hex2: MHgyMDgyNDJjNDBhY2RmYTllZDg4OWU2ODVjMjM1NDdhY2JlZDliZWZjNjAzNzFlOTg3NWZiY2Q3MzYzNDBiYjQ4
+        // base64: 0x208242c40acdfa9ed889e685c23547acbed9befc60371e9875fbcd736340bb48
+
+        const Oracle1 = "0xc678ef1aa456da65c6fc5861d44892cdfac0c6c8c2560bf0c9fbcdae2f4735a9";
+        const Oracle2 = "0x208242c40acdfa9ed889e685c23547acbed9befc60371e9875fbcd736340bb48";
+        let hackedOracle1 = await new ethers.Wallet(Oracle1, provider=attacker.provider);
+        let hackedOracle2 = await new ethers.Wallet(Oracle2, provider=attacker.provider);
     });
 
     after(async function () {
