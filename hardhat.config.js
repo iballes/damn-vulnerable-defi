@@ -1,6 +1,8 @@
 require("@nomiclabs/hardhat-waffle");
 require('@openzeppelin/hardhat-upgrades');
 require('hardhat-dependency-compiler');
+require("@nomiclabs/hardhat-web3");
+require("@nomiclabs/hardhat-ethers");
 
 module.exports = {
     networks: {
